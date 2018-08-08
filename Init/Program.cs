@@ -13,7 +13,6 @@ namespace Init
         private static ElasticClient _esClient = new ElasticClient(new ConnectionSettings(new Uri("http://localhost:9200")));
         static void Main(string[] args)
         {
-            //创建围栏索引
             _esClient.DeleteIndex(_indexName);
             _esClient.CreateIndex(_indexName, c => c
                  .Settings(s => s
