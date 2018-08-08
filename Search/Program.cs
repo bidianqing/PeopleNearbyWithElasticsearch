@@ -16,7 +16,7 @@ namespace Search
 
             foreach (var item in searchResponse.Documents)
             {
-                Console.WriteLine($"{item.Id}");
+                Console.WriteLine($"{item.Name}");
             }
 
             Console.ReadKey();
@@ -34,7 +34,7 @@ namespace Search
                          )
                          .Filter(f => f
                              .GeoDistance(g => g
-                                 .Distance("1000m")
+                                 .Distance("250m")
                                  .Field(p => p.AmapLocation)
                                  .Location(new GeoLocation(latitude: 40.066163, longitude: 116.359392))
                              )

@@ -31,10 +31,12 @@ namespace Init
         {
             List<User> userList = new List<User>
             {
-                new User{ Id=1,AmapLocation=new GeoLocation(latitude:40.066061,longitude:116.359382)},
-                new User{ Id=2,AmapLocation=new GeoLocation(latitude:40.066028,longitude:116.359012)},
-                new User{ Id=3,AmapLocation=new GeoLocation(latitude:40.06643,longitude:116.359382)},
-                new User{ Id=4,AmapLocation=new GeoLocation(latitude:40.066233,longitude:116.35803)}
+                new User{ Id=1,AmapLocation=new GeoLocation(latitude:40.066074,longitude:116.359387),Name="东南门"},
+                new User{ Id=2,AmapLocation=new GeoLocation(latitude:40.066033,longitude:116.359044),Name="亮哲剪艺"},
+                new User{ Id=3,AmapLocation=new GeoLocation(latitude:40.066234,longitude:116.358035),Name="张亮麻辣烫"},
+                new User{ Id=4,AmapLocation=new GeoLocation(latitude:40.066673,longitude:116.358024),Name="兰州老马食府"},
+                new User{ Id=5,AmapLocation=new GeoLocation(latitude:40.066862,longitude:116.357075),Name="北京国际温泉体育健身中心"},
+                new User{ Id=6,AmapLocation=new GeoLocation(latitude:40.067441,longitude:116.359913),Name="文德幼儿园"}
             };
 
             foreach (var user in userList)
