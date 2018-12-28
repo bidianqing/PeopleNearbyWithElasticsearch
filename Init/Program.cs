@@ -20,7 +20,7 @@ namespace Init
                       .NumberOfReplicas(1)
                  )
             );
-            _esClient.Map<User>(m => m.Index(_indexName).Type(_typeName).AutoMap());
+            _esClient.Map<User>(m => m.Index(_indexName).AutoMap());
 
             Import().GetAwaiter().GetResult();
 
@@ -41,7 +41,7 @@ namespace Init
 
             foreach (var user in userList)
             {
-                await _esClient.IndexAsync(user, u => u.Index(_indexName).Type(_typeName));
+                await _esClient.IndexAsync(user, u => u.Index(_indexName));
             }
 
         }

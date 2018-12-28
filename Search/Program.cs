@@ -2,6 +2,7 @@
 using Nest;
 using System;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Search
 {
@@ -14,19 +15,25 @@ namespace Search
         {
             var searchResponse = SearchPeople().GetAwaiter().GetResult();
 
-            foreach (var item in searchResponse.Documents)
+            foreach (var hit in searchResponse.Hits)
             {
-                Console.WriteLine($"{item.Name}");
+                Console.WriteLine($"距离{hit.Source.Name} {Math.Ceiling((double)hit.Sorts.FirstOrDefault())}米");
             }
-
             Console.ReadKey();
         }
-
         private static async Task<ISearchResponse<User>> SearchPeople()
         {
             return await _esClient.SearchAsync<User, User>(s => s
                  .Index(_indexName)
-                 .Type(_typeName)
+                 .Sort(ss => ss
+                    .GeoDistance(g => g
+                        .Field(p => p.AmapLocation)
+                        .Order(SortOrder.Ascending)
+                        .Unit( DistanceUnit.Meters)
+                        .Mode(SortMode.Min)
+                        .Points(new GeoLocation(latitude: 40.066163, longitude: 116.359392))
+                    )
+                 )
                  .Query(q => q
                      .Bool(b => b
                          .Must(m => m
@@ -34,7 +41,7 @@ namespace Search
                          )
                          .Filter(f => f
                              .GeoDistance(g => g
-                                 .Distance("250m")
+                                 .Distance("500m")
                                  .Field(p => p.AmapLocation)
                                  .Location(new GeoLocation(latitude: 40.066163, longitude: 116.359392))
                              )
