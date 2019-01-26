@@ -24,7 +24,8 @@ namespace Init
 
             Import().GetAwaiter().GetResult();
 
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("初始化数据完成");
+            Console.ReadKey();
         }
 
         private static async Task Import()
